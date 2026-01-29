@@ -1,0 +1,83 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-indigo-deep: #05060a;
+  --color-amber: #f59e0b;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: var(--color-indigo-deep);
+  font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-cursive {
+  font-family: 'Ma Shan Zheng', cursive;
+}
+
+/* Advanced Glass Card */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Light Sweep Effect */
+.light-sweep {
+  position: relative;
+  overflow: hidden;
+}
+.light-sweep::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+.animate-sweep::after {
+  animation: sweep 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes sweep {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* Smooth Scrolling (if lenis not used) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hidden Scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+.text-glow {
+  text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+@layer utilities {
+  .will-change-transform {
+    will-change: transform, opacity, filter;
+  }
+}
