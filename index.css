@@ -22,6 +22,12 @@ body {
   font-family: 'Ma Shan Zheng', cursive;
 }
 
+/* 确保 Canvas 背景始终处于最底层且可见 */
+canvas {
+  display: block;
+  image-rendering: auto;
+}
+
 /* Advanced Glass Card */
 .glass-panel {
   background: rgba(255, 255, 255, 0.03);
@@ -31,26 +37,9 @@ body {
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
-/* Light Sweep Effect */
 .light-sweep {
   position: relative;
   overflow: hidden;
-}
-.light-sweep::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -100%;
-  width: 50%;
-  height: 200%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  transform: rotate(25deg);
-  pointer-events: none;
 }
 
 .animate-sweep::after {
@@ -62,12 +51,10 @@ body {
   100% { left: 200%; }
 }
 
-/* Smooth Scrolling (if lenis not used) */
 html {
   scroll-behavior: smooth;
 }
 
-/* Hidden Scrollbar */
 ::-webkit-scrollbar {
   display: none;
 }

@@ -14,32 +14,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 const App: React.FC = () => {
   useEffect(() => {
-    // Initial global entrance
-    gsap.fromTo("main", { opacity: 0 }, { opacity: 1, duration: 1.5, ease: "power2.out" });
+    // 渐进式显示，防止 WebGL 未加载完成时的闪烁
+    gsap.fromTo("main", { opacity: 0 }, { opacity: 1, duration: 1, ease: "power2.out" });
     
-    // Smooth scroll experience tweak
-    document.documentElement.style.scrollBehavior = 'smooth';
-
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
 
   return (
-    <div className="bgStage min-h-screen">
+    <div className="bgStage min-h-screen relative bg-[#05060a]">
+      {/* 粒子背景始终在最底层 */}
       <ParticlesBackgroundThree />
       
       <main className="relative z-10 w-full flex flex-col items-center selection:bg-amber-500/20">
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-4xl">
           <Hero />
           
-          <div className="space-y-24 pb-12">
+          <div className="space-y-16 pb-12">
+            {/* 核心 3D 蛋糕部分 */}
             <Cake3DSection />
             
-            <div className="px-6 text-center space-y-4">
+            {/* 分割文案 */}
+            <div className="px-6 text-center space-y-4 reveal-section">
               <h2 className="text-3xl md:text-5xl font-cursive text-white/90 tracking-[0.2em] text-glow">岁月的倒影</h2>
-              <p className="text-xs text-white/20 tracking-[0.6em] uppercase font-light">Memory Fragments</p>
-              <div className="mt-8 w-12 h-[2px] bg-gradient-to-r from-amber-500/40 to-transparent mx-auto rounded-full" />
+              <p className="text-[10px] text-white/20 tracking-[0.6em] uppercase font-light">Memory Fragments</p>
+              <div className="mt-6 w-12 h-[1px] bg-gradient-to-r from-amber-500/40 to-transparent mx-auto" />
             </div>
             
             <PhotoWall />
